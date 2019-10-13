@@ -1,6 +1,6 @@
 
 NAME = 'PyBoolector'
-VERSION = '3.0.0'
+VERSION = '3.0.0.1'
 DESCRIPTION = "Python wrapper around the Boolector SMT solver"
 LONG_DESCRIPTION = """\
 This package, specifically, enables the Boolector Python wrapper \
@@ -33,18 +33,11 @@ CLASSIFIERS = [
 ]
 
 
-LIBYAML_CHECK = """
-#include <yaml.h>
+# TODO: Likely need to tune this a bit
+LIBBOOLECTOR_CHECK = """
+#include "boolector/boolector.h"
 
 int main(void) {
-    yaml_parser_t parser;
-    yaml_emitter_t emitter;
-
-    yaml_parser_initialize(&parser);
-    yaml_parser_delete(&parser);
-
-    yaml_emitter_initialize(&emitter);
-    yaml_emitter_delete(&emitter);
 
     return 0;
 }
@@ -302,7 +295,7 @@ if __name__ == '__main__':
 		'src/pyboolector.pyx',
 		'src/pyboolector_abort.cpp',
 		'src/boolector_py.c'],
-                'libyaml', "Boolector bindings", LIBYAML_CHECK,
+                'libyaml', "Boolector bindings", LIBBOOLECTOR_CHECK,
 		include_dirs=[
 			'/usr/include/boolector',
 			'./src'

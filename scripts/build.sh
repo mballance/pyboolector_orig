@@ -111,7 +111,7 @@ sed -i -e 's/add_check_c_cxx_flag("-W")/add_check_c_cxx_flag("-W")\nadd_check_c_
 
 cd boolector-master
 
-./configure.sh -fPIC --prefix /usr
+./configure.sh -fPIC --shared --prefix /usr
 if test $? -ne 0; then exit 1; fi
 
 cd build
@@ -160,5 +160,8 @@ for whl in dist/*.whl; do
   auditwheel repair $whl
   if test $? -ne 0; then exit 1; fi
 done
+
+#twine upload --repository-url https://test.pypi.org/legacy/ wheelhouse/* dist/*.tar.gz
+
 
 
