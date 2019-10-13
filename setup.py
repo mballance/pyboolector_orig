@@ -299,13 +299,14 @@ if __name__ == '__main__':
 #        packages=['yaml'],
         ext_modules=[
 		Extension('pyboolector', [
-		'boolector/src/api/python/pyboolector.pyx',
-		'boolector/src/api/python/pyboolector_abort.cpp',
-		'boolector/src/api/python/boolector_py.c'],
+		'src/pyboolector.pyx',
+		'src/pyboolector_abort.cpp',
+		'src/boolector_py.c'],
                 'libyaml', "Boolector bindings", LIBYAML_CHECK,
 		include_dirs=[
 			'/usr/include/boolector',
-			'boolector/src'],
+			'./src'
+		],
                 language="c++",
                 libraries=['boolector']),
         ],
